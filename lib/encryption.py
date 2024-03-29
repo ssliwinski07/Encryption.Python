@@ -5,9 +5,12 @@ class Encryption:
 
     _key = Fernet.generate_key()
     _cipher = Fernet(_key)
+
+    def __init__(self, plain_password: str):
+        self.plain_password = plain_password
         
-    def encrypt_password(self, plain_password):
-        token = plain_password.encode()
+    def encrypt_password(self):
+        token = self.plain_password.encode()
         encrypted_password = self._cipher.encrypt(token).decode()
         return encrypted_password
 

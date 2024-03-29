@@ -1,13 +1,16 @@
 from lib.encryption import Encryption
 import sys
 
-plain_password = sys.argv[1]
-
 def main():
+    if len(sys.argv) < 2:
+        print('Usage: python3(macOS)/python(windows) main.py <password>')
+        return
     
-    encryption = Encryption()
+    plain_password = sys.argv[1]
+    
+    encryption = Encryption(plain_password=plain_password)
 
-    encrypted_pwd = encryption.encrypt_password(plain_password)
+    encrypted_pwd = encryption.encrypt_password()
     decrypted_pwd = encryption.decrypt_password(encrypted_pwd)
 
     print(encrypted_pwd)
