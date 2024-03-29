@@ -10,8 +10,8 @@ class Encryption:
         self.plain_password = plain_password
         
     def encrypt_password(self):
-        token = self.plain_password.encode()
-        encrypted_password = self._cipher.encrypt(token).decode()
+        password_to_encrypt = self.plain_password.encode()
+        encrypted_password = self._cipher.encrypt(password_to_encrypt).decode()
         return encrypted_password
 
     def decrypt_password(self, encrypted_password):
