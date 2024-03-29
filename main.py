@@ -3,7 +3,7 @@ import sys
 
 def main():
     if len(sys.argv) < 2:
-        print('Usage: python3(macOS)/python(windows) main.py <password>')
+        print('Usage: python3(macOS)/python(windows, linux) main.py <password>')
         return
     
     plain_password = sys.argv[1]
