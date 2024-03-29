@@ -6,9 +6,9 @@ def main():
         print('Usage: python3(macOS)/python(windows, linux) main.py <password>')
         return
     
-    plain_password = sys.argv[1]
+    plain_txt_password = sys.argv[1]
     
-    encryption = Encryption(plain_password=plain_password)
+    encryption = Encryption(password=plain_txt_password)
 
     encrypted_pwd = encryption.encrypt_password()
     decrypted_pwd = encryption.decrypt_password(encrypted_pwd)
