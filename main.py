@@ -10,11 +10,14 @@ def main():
     
     encryption = Encryption(password=plain_txt_password)
 
-    encrypted_pwd = encryption.encrypt_password()
-    decrypted_pwd = encryption.decrypt_password(encrypted_pwd)
+    #encrypted_pwd = encryption.encrypt_password()
+    #decrypted_pwd = encryption.decrypt_password(encrypted_pwd)
 
-    print(encrypted_pwd)
-    print(decrypted_pwd)
+    encoded_pwd = encryption.encode64()
+    decoded_pwd = encryption.decode64(encoded_pwd)
+
+    print(encoded_pwd)
+    print(decoded_pwd)
      
 
 if __name__ == "__main__":

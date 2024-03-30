@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import base64
 
 class Encryption:
     #key = b'ZmDfcTF7_60GrrY167zsiPd67pEvs0aGOv2oasOM1Pg='
@@ -25,6 +26,16 @@ class Encryption:
 
         print(f"Encrypted pwd: {encrypted_password}")
         print(f"Decrypted pwd: {decrypted_password}")
+
+    def encode64(self):
+        password_to_encode = self.password.encode()
+        encoded_password = base64.b64encode(password_to_encode).decode()
+        return encoded_password
+    
+    @staticmethod
+    def decode64(encoded):
+        decoded = base64.b64decode(encoded).decode()
+        return decoded
 
 
 
