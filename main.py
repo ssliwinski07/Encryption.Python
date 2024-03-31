@@ -8,17 +8,15 @@ def main():
     
     plain_txt_password = sys.argv[1]
     
-    encryption = Encryption(password=plain_txt_password)
+    encrypted_pwd = Encryption.encrypt_password(password=plain_txt_password)
+    decrypted_pwd = Encryption.decrypt_password(encrypted_password=encrypted_pwd)
+    encoded_pwd = Encryption.encode64(password=plain_txt_password)
+    decoded_pwd = Encryption.decode64(encoded_password=encoded_pwd)
 
-    #encrypted_pwd = encryption.encrypt_password()
-    #decrypted_pwd = encryption.decrypt_password(encrypted_pwd)
-
-    encoded_pwd = encryption.encode64()
-    decoded_pwd = encryption.decode64(encoded_pwd)
-
-    print(encoded_pwd)
-    print(decoded_pwd)
+    print(f"Encoded password {encoded_pwd}")
+    print(f"Decoded passowrd: {decoded_pwd}")
+    print(f"Encrypted password: {encrypted_pwd}")
+    print(f"Decrypted password: {decrypted_pwd}")
      
-
 if __name__ == "__main__":
     main()
