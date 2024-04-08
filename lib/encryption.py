@@ -4,24 +4,27 @@ import base64
 class Encryption:
     #key = b'ZmDfcTF7_60GrrY167zsiPd67pEvs0aGOv2oasOM1Pg='
 
-    _key = Fernet.generate_key()
-    _cipher = Fernet(_key)
-      
     @staticmethod
-    def encrypt_password(password: str):
+    def encrypt_password(password: str, key: str):
+        key_bytes = key.encode()
+        cipher = Fernet(key_bytes)
         password_to_encrypt = password.encode()
-        encrypted_password = Encryption._cipher.encrypt(password_to_encrypt).decode()
+        encrypted_password = cipher.encrypt(password_to_encrypt).decode()
+        
         return encrypted_password
     
     @staticmethod
-    def decrypt_password(encrypted_password):
-        decrypted_password = Encryption._cipher.decrypt(encrypted_password).decode()
+    def decrypt_password(encrypted_password, key: str):
+        key_bytes = key.encode()
+        cipher = Fernet(key_bytes)
+        decrypted_password = cipher.decrypt(encrypted_password).decode()
+        
         return decrypted_password
 
     @staticmethod
-    def print_encrypted_decrypted():
-        encrypted_password = Encryption.encrypt_password()
-        decrypted_password = Encryption.decrypt_password(encrypted_password)
+    def print_encrypted_decrypted(password: str, key: str):
+        encrypted_password = Encryption.encrypt_password(password, key)
+        decrypted_password = Encryption.decrypt_password(encrypted_password, key)
 
         print(f"Encrypted pwd: {encrypted_password}")
         print(f"Decrypted pwd: {decrypted_password}")
