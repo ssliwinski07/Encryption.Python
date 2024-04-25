@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 import base64
+import logging
 
 class Encryption:
     #key = b'ZmDfcTF7_60GrrY167zsiPd67pEvs0aGOv2oasOM1Pg='
@@ -9,15 +10,25 @@ class Encryption:
         key_bytes = key.encode()
         cipher = Fernet(key_bytes)
         password_to_encrypt = password.encode()
-        encrypted_password = cipher.encrypt(password_to_encrypt).decode()
+
+        try: 
+            encrypted_password = cipher.encrypt(password_to_encrypt).decode()              
+        except Exception as e:
+            print('En error occured during password encryption: {e}')
+            return None
         
-        return encrypted_password
-    
+        return encrypted_password  
+   
     @staticmethod
     def decrypt_password(encrypted_password: str, key: str):
         key_bytes = key.encode()
-        cipher = Fernet(key_bytes)
-        decrypted_password = cipher.decrypt(encrypted_password).decode()
+        cipher = Fernet(key_bytes)  
+        
+        try:
+            decrypted_password = cipher.decrypt(encrypted_password).decode()     
+        except Exception as e:
+            print('En error occured during password decryption: {e}')
+            return None
         
         return decrypted_password
 
