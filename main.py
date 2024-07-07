@@ -1,21 +1,26 @@
 from lib.encryption import Encryption
 import sys
+import argparse
 
 def main():
+
+    parser = argparse.ArgumentParser(description='Encrypt and decrypt a password using a key.')
+
     if len(sys.argv) < 3:
         print('Usage: python3(macOS)/python(windows, linux) main.py <password> <key>')
         return
     
-    plain_txt_password: str = sys.argv[1]
-    encryption_key: str = sys.argv[2]
-    
-    encrypted_pwd = Encryption.encrypt_password(password=plain_txt_password, key=encryption_key)
-    decrypted_pwd = Encryption.decrypt_password(encrypted_password=encrypted_pwd, key=encryption_key)
-    encoded_pwd = Encryption.encode64(password=plain_txt_password)
-    decoded_pwd = Encryption.decode64(encoded_password=encoded_pwd)
+    parser.add_argument('--password', type=str, required=True)
+    parser.add_argument('--encryption_key', type=str, required=True)
 
-    print(f"Encoded password {encoded_pwd}")
-    print(f"Decoded passowrd: {decoded_pwd}")
+    args = parser.parse_args()
+    
+    # plain_txt_password: str = sys.argv[1]
+    # encryption_key: str = sys.argv[2]
+       
+    encrypted_pwd = Encryption.encrypt_password(password=args.password, key=args.encryption_key)
+    decrypted_pwd = Encryption.decrypt_password(encrypted_password=encrypted_pwd, key=args.encryption_key)
+
     print(f"Encrypted password: {encrypted_pwd}")
     print(f"Decrypted password: {decrypted_pwd}")
      
