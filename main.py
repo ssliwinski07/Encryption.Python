@@ -1,4 +1,4 @@
-from Encryption.encryption import Encryption
+from lib.Encryption.encryption import Encryption
 import sys
 import argparse
 
@@ -7,7 +7,7 @@ def main():
     parser = argparse.ArgumentParser(description='Encrypt and decrypt a password using a key.')
 
     if len(sys.argv) < 3:
-        print('Usage: python3(macOS)/python(windows, linux) main.py <password> <key>')
+        print('Usage: python3(macOS)/python(windows, linux) main.py --password <password> --encryption_key <encryption_key>')
         return
     
     parser.add_argument('--password', type=str, required=True)
