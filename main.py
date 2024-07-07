@@ -1,4 +1,4 @@
-from lib.encryption import Encryption
+from Encryption.encryption import Encryption
 import sys
 import argparse
 
